@@ -29,4 +29,13 @@ export class FormValidation {
         };
         return validator;
     }
+
+    static getErroMsg(fieldName:string, validatorName:string, validatorValue?:any){
+        const config={
+            'required':`${fieldName} é obrigatório.`,
+            'minLength':`${fieldName} precisa ter no mínimo ${ validatorValue} caracteres.`,
+            'cepInvalido':'CEP inválido.',
+        }
+        return config[validatorName];
+    }
 }

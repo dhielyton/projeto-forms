@@ -2,8 +2,8 @@
   <div class="form-group" [ngClass]="aplicaCssErro('nome')">
     <label for="nome">Nome</label>
     <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome">
-    <app-campo-control-erro [mostrarErro]="verificaValidTouched('nome')" msgErro="O nome é Obirgatorio">
-    </app-campo-control-erro>
+    <app-erro-msg [control]="formulario.get('nome')"  label="nome" >
+    </app-erro-msg>
   </div>
   <div class="form-group" [ngClass]="aplicaCssErro('email')">
     <label for="email">Email</label>
