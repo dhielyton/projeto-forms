@@ -98,6 +98,17 @@
     </div>
 
   </div>
+  <div class="form-group">
+    <div class="col-md-3" [ngClass]="aplicaCssErro('termos')">
+      <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="termo" formControlName="termos">
+          <label class="custom-control-label" for="termo">Aceito os Termos</label>
+          <app-campo-control-erro [mostrarErro]="verificaValidTouched('termos')" msgErro="Por Favor, Aceite os termos!">
+            </app-campo-control-erro>
+        </div>
+    </div>
+  </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
   <button type="button" (click)="resetar()" class="btn btn-secondary">Cancelar</button>
   <button type="button" (click)="setarCargo()" class="btn btn-secondary">Cargo</button>
