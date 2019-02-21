@@ -1,3 +1,4 @@
+import { VerificaEmailService } from './services/verifica-email.service';
 import { FormValidation } from './../shared/form-validation';
 import { map } from 'rxjs/operators';
 import { ConsultarCepService } from './../shared/services/consultar-cep.service';
@@ -27,9 +28,11 @@ export class DataFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient,
     private dropDownService: DropDownService,
-    private cepService: ConsultarCepService) { }
+    private cepService: ConsultarCepService,
+    private verificaEmailService:VerificaEmailService) { }
 
   ngOnInit() {
+    
     this.estados = this.dropDownService.getEstadoBr();
     this.cargos = this.dropDownService.getCargos();
     this.tecnologias = this.dropDownService.getTecnologias();
@@ -45,7 +48,8 @@ export class DataFormComponent implements OnInit {
     //   })
     this.formulario = this.formBuilder.group({
       nome: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.email],[this.verificarEmail.bind(this)]],
+      confirmarEmail: [null, [FormValidation.equalsTo('email')]],
       endereco: this.formBuilder.group({
         cep: [null, Validators.required, FormValidation.cepValidation],
         numero: [null, Validators.required],
@@ -191,6 +195,10 @@ export class DataFormComponent implements OnInit {
   }
   setarTecnologias(){
     this.formulario.get('tecnologias').setValue(['cSharp','typeScript']);
+  }
+  verificarEmail(formControl:FormControl){
+    return this.verificaEmailService.verificarEmail(formControl.value)
+    .pipe( map( emailExiste => emailExiste?{ emailInvalido:true}: null));
   }
 
 }
