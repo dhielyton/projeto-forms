@@ -2,10 +2,11 @@ import { map } from 'rxjs/operators';
 import { ConsultarCepService } from './../shared/services/consultar-cep.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { DropDownService } from '../shared/services/drop-down.service';
 import { EstadoBr } from '../shared/models/estadobr';
 import { Observable } from 'rxjs';
+import { ValueTransformer } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-data-form',
@@ -92,6 +93,20 @@ export class DataFormComponent implements OnInit {
       this.verifcarValidacoesForm(this.formulario)
     }
 
+  }
+  requiredMinCheckbox(min=1){
+    const validation = (formArray:FormArray) =>{
+      // const values = formArray.controls;
+      // let totalChecked = 0;
+      // for(let i = 0; i < values.length; i++){
+      //   if(values[i].value){
+      //     totalChecked++;
+      //   }
+      // }
+      const totalChecked = formArray.controls
+      .map(v => v.value).reduce((total, current)=> current? total+current:total, 0);
+      return totalChecked>= min? null :{required: true}
+    }
   }
 
   verifcarValidacoesForm(formGroup: FormGroup) {
