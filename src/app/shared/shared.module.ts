@@ -2,6 +2,8 @@ import { FormDebugComponent } from './form-debug/form-debug.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CampoControlErroComponent } from './campo-control-erro/campo-control-erro.component';
+import { DropDownService } from './services/drop-down.service';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -9,12 +11,15 @@ import { CampoControlErroComponent } from './campo-control-erro/campo-control-er
     CampoControlErroComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClient
   ],
   exports:[
     FormDebugComponent,
-    CampoControlErroComponent
-  ]
+    CampoControlErroComponent,
+    DropDownService
+  ],
+  providers:[DropDownService]
 
   
 })
