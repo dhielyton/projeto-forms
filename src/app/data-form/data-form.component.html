@@ -82,9 +82,20 @@
   </div>
   <div class="form-group">
     <label for="tecnologias" class="control-label">Tecnologias</label>
-    <select  multiple class="form-control" id="tecnologia" formControlName="tecnologias" >
-      <option  *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">{{ tecnologia.desc}}</option>
+    <select multiple class="form-control" id="tecnologia" formControlName="tecnologias">
+      <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">{{ tecnologia.desc}}</option>
     </select>
+
+  </div>
+  <div class="form-group">
+    <label for="newsletter" class="control-label">Newsletter</label>
+    <div id="newsletter" class="row">
+      <div class="col-sm-4" *ngFor="let opcao of newsletterOp">
+        <label class="radio-inline">
+          <input type="radio" [value]="opcao.valor" formControlName="newsletter" /> {{ opcao.desc}}
+        </label>
+      </div>
+    </div>
 
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>

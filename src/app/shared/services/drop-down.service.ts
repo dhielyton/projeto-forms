@@ -27,5 +27,11 @@ export class DropDownService {
       {nome:'cSharp', desc:'C#'}
     ]
   }
+  getNewsletter(){
+    return [
+      {valor:'s', desc:'Sim'},
+      {valor:'n', desc:'Não'}
+    ]
+  }
   constructor(private http: HttpClient) { }
 }
