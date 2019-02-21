@@ -64,15 +64,24 @@
 
       <div class="col-sm-3" [ngClass]="aplicaCssErro('endereco.estado')">
         <label for="estado" class="control-label">Estado</label>
-        <select  class="form-control" id="estado" formControlName="estado">
-          <option *ngFor="let estado of estados |async"[value]="estado.sigla">{{ estado.nome}}</option>
+        <select class="form-control" id="estado" formControlName="estado">
+          <option *ngFor="let estado of estados |async" [value]="estado.sigla">{{ estado.nome}}</option>
         </select>
         <app-campo-control-erro [mostrarErro]="verificaValidTouched('endereco.estado')" msgErro="O nome é Obirgatorio">
         </app-campo-control-erro>
       </div>
     </div>
   </div>
+
+  <div class="form-group">
+    <label for="estado" class="control-label">Cargo</label>
+    <select class="form-control" id="cargo" formControlName="cargo" [compareWith]="compararCargos">
+      <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{ cargo.desc}}</option>
+    </select>
+
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   <button type="button" (click)="resetar()" class="btn btn-secondary">Cancelar</button>
+  <button type="button" (click)="setarCargo()" class="btn btn-secondary">Cargo</button>
   <app-form-debug [form]="formulario"></app-form-debug>
 </form>
