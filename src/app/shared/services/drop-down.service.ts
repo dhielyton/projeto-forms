@@ -17,5 +17,15 @@ export class DropDownService {
       {nome:'Dev', nivel:'Senior', desc:'Dev Sr'}
     ]
   }
+  getTecnologias(){
+    return [
+      {nome:'java', desc:'Java'},
+      {nome:'javaScript', desc:'JavaScript'},
+      {nome:'php', desc:'PHP'},
+      {nome:'ruby', desc:'Ruby'},
+      {nome:'typeScript', desc:'TypeScript'},
+      {nome:'cSharp', desc:'C#'}
+    ]
+  }
   constructor(private http: HttpClient) { }
 }

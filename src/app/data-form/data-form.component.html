@@ -80,8 +80,16 @@
     </select>
 
   </div>
+  <div class="form-group">
+    <label for="tecnologias" class="control-label">Tecnologias</label>
+    <select  multiple class="form-control" id="tecnologia" formControlName="tecnologias" >
+      <option  *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">{{ tecnologia.desc}}</option>
+    </select>
+
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   <button type="button" (click)="resetar()" class="btn btn-secondary">Cancelar</button>
   <button type="button" (click)="setarCargo()" class="btn btn-secondary">Cargo</button>
+  <button type="button" (click)="setarTecnologias()" class="btn btn-secondary">Tecnologia</button>
   <app-form-debug [form]="formulario"></app-form-debug>
 </form>
