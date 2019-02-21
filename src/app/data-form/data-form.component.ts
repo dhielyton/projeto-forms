@@ -1,3 +1,4 @@
+import { FormValidation } from './../shared/form-validation';
 import { map } from 'rxjs/operators';
 import { ConsultarCepService } from './../shared/services/consultar-cep.service';
 import { HttpClient } from '@angular/common/http';
@@ -46,7 +47,7 @@ export class DataFormComponent implements OnInit {
       nome: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       endereco: this.formBuilder.group({
-        cep: [null, Validators.required],
+        cep: [null, Validators.required, FormValidation.cepValidation],
         numero: [null, Validators.required],
         complemento: [null],
         rua: [null, Validators.required],
