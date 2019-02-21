@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { ConsultarCepService } from './../shared/services/consultar-cep.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -19,6 +20,7 @@ export class DataFormComponent implements OnInit {
   cargos:any[];
   tecnologias:any[];
   newsletterOp:any[];
+  frameworks =['Angular', 'React', 'Vue', 'Sancha'];
 
   constructor(private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -54,15 +56,32 @@ export class DataFormComponent implements OnInit {
       cargo:[null],
       tecnologias:[null],
       newsletter:['s'],
-      termos:[null,Validators.pattern('true')]
+      termos:[null,Validators.pattern('true')],
+      frameworks:this.buildFrameworks()
 
     });
   }
+  buildFrameworks(){
+    const values = this.frameworks.map( x => new FormControl(false));
+    return this.formBuilder.array(values);
+    // return [
+    //   new FormControl(false),
+    //   new FormControl(false),
+    //   new FormControl(false),
+    //   new FormControl(false)
+    // ]
+  }
 
   onSubmit() {
+    let valueSubmit = Object.assign({}, this.formulario.value);
+    valueSubmit = Object.assign(valueSubmit,{
+      frameworks:valueSubmit.frameworks.map(
+        (v,i)=> v? this.frameworks[i]: null
+      ).filter(v => v !== null)
+    });
     if (this.formulario.valid) {
       console.log(this.formulario.value);
-      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+      this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
         .subscribe(dados => {
           console.log(dados);
           this.formulario.reset();
