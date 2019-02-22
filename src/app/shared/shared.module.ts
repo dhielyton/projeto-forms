@@ -7,13 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErroMsgComponent } from './erro-msg/erro-msg.component';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { FormsModule } from '@angular/forms';
+import { BaseFormComponent } from './base-form/base-form.component';
 
 @NgModule({
   declarations: [
     FormDebugComponent,
     CampoControlErroComponent,
     ErroMsgComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    
    
     
   ],
