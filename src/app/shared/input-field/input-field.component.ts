@@ -1,14 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, Input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-
+const INPUT_FIELD_VALUE_ACESSOR: any = {
+  provide:NG_VALUE_ACCESSOR,
+  useExisting:forwardRef(() => InputFieldComponent),
+  multi:true
+};
 @Component({
   selector: 'app-input-field',
   templateUrl: './input-field.component.html',
-  styleUrls: ['./input-field.component.css']
+  styleUrls: ['./input-field.component.css'],
+  providers:[INPUT_FIELD_VALUE_ACESSOR]
 })
-export class InputFieldComponent implements OnInit, ControlValueAccessor {
+export class InputFieldComponent implements  ControlValueAccessor {
 
   @Input() classeCSS;
   @Input() id: string;
@@ -16,10 +20,10 @@ export class InputFieldComponent implements OnInit, ControlValueAccessor {
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() control;
-  @Input() isReadOnly= false;
+  @Input() isReadOnly = false;
 
   private innerValue: any;
-  get value() {
+  get value():any {
     return this.innerValue;
   }
 

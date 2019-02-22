@@ -2,7 +2,8 @@
     <label [attr.for]="id">{{label}}</label>
     <input [type]="type" class="form-control" [id]="id" 
     [placeholder]="placeholder" [readOnly]="!!isReadOnly"
-    [(ngModel)]="value">
+    [(ngModel)]="value" />
     <app-erro-msg [control]="control"  [label]="label" >
     </app-erro-msg>
+    
   </div>

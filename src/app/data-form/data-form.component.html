@@ -1,14 +1,14 @@
 <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
   <app-input-field  [classeCSS]="aplicaCssErro('nome')"
-  id="nome" label="Nome" [control]="formulario.get('nome')">
+  id="nome" label="Nome" [control]="formulario.get('nome')" formControlName="nome"> 
 
   </app-input-field>
-  <div class="form-group" [ngClass]="aplicaCssErro('nome')">
+  <!-- <div class="form-group" [ngClass]="aplicaCssErro('nome')">
     <label for="nome">Nome</label>
     <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome">
     <app-erro-msg [control]="formulario.get('nome')"  label="nome" >
     </app-erro-msg>
-  </div>
+  </div> -->
   <div class="form-group" [ngClass]="aplicaCssErro('email')">
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" placeholder="exemplo@email.com" formControlName="email">
